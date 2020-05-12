@@ -12,7 +12,7 @@ stack_t *create_node(int n)
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		perror("Error: malloc failed");
+		perror("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
