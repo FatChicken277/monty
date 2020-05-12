@@ -3,11 +3,10 @@
 int main(int argc, char *argv[])
 {
 	char *filename = argv[1];
-	int file;
-	char bf[1024];
+	FILE *file;
 	char *line = NULL;
 	size_t len = 0;
-    ssize_t readd;
+	int num_line = 0;
 
 	if (argc != 2)
 	{
@@ -15,20 +14,19 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	file = open(filename, O_RDONLY);
-	if (file < 0)
+	file = fopen(filename, "r");
+	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-
-	read(file, bf, 1024);
-
-	while ((readd = getline(&line, &len, bf)) != -1)
+	while (getline(&line, &len, file) != -1)
 	{
-        printf("Retrieved line of length %zu:\n", readd);
-        printf("%s", line);
-    }
+		printf("%d, %s", num_line++, line);
+	}
+	fflush(stdout);
+	fclose(file);
+	free(line);
 
 	return (0);
 }
