@@ -12,7 +12,7 @@ stack_t *create_node(int n)
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		perror("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -22,6 +22,7 @@ stack_t *create_node(int n)
 
 	return (new_node);
 }
+
 /**
  * _push - adds a new node in the stack
  * @stack: top of the stack
@@ -30,17 +31,17 @@ stack_t *create_node(int n)
  */
 stack_t *_push(stack_t **stack, int n)
 {
-        stack_t *new;
+	stack_t *new;
 
 	new = create_node(n);
-        if ((*stack) == NULL)
-                *stack = new;
-        else
-        {
-                new->next = *stack;
-                (*stack)->prev = new;
-                (*stack) = new;
-        }
-        printf("value %d in the stack\n", (*stack)->n);
-        return (*stack);
+	if ((*stack) == NULL)
+		*stack = new;
+	else
+	{
+		new->next = *stack;
+		(*stack)->prev = new;
+		(*stack) = new;
+	}
+	printf("value %d in the stack\n", (*stack)->n);
+	return (*stack);
 }
