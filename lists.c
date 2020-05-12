@@ -22,3 +22,25 @@ stack_t *create_node(int n)
 
 	return (new_node);
 }
+/**
+ * _push - adds a new node in the stack
+ * @stack: top of the stack
+ * @n: data for the new node
+ * Return: address of new node
+ */
+stack_t *_push(stack_t **stack, int n)
+{
+        stack_t *new;
+
+	new = create_node(n);
+        if ((*stack) == NULL)
+                *stack = new;
+        else
+        {
+                new->next = *stack;
+                (*stack)->prev = new;
+                (*stack) = new;
+        }
+        printf("value %d in the stack\n", (*stack)->n);
+        return (*stack);
+}

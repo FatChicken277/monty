@@ -41,5 +41,6 @@ typedef struct instruction_s
 /** ====Prototypes==== **/
 
 stack_t *create_node(int n);
+stack_t *_push(stack_t **stack, int n);
 
 #endif
