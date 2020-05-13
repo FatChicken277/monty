@@ -5,7 +5,7 @@
  * @stack: top of the stack.
  * @count: line_number.
  */
-void _push(stack_t **stack, unsigned int count)
+void _push(stack_t **stack, unsigned int count, char *gnum)
 {
 	stack_t *new;
 	int i, n;

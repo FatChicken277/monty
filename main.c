@@ -30,10 +30,10 @@ int main(int argc, char *argv[])
 
 	while ((getline(&line, &len, file)) != -1)
 	{
-		_strtok(line, count, &stack);
+		_strtok(line, count, &stack, file);
 		count++;
 	}
-
+	/*Liberar stack en caso de que no tenga ningún opcode con error*/
 	fclose(file);
 	free(line);
 
@@ -46,12 +46,13 @@ int main(int argc, char *argv[])
  * @count: line_number.
  * @line: one line of buffer.
  */
-void _strtok(char *line, unsigned int count, stack_t **stack)
+void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file __attribute__((unused)))
 {
 	int i = 0;
 	char *token = NULL;
+	char *gnum;
 	instruction_t finder[] = {
-		{"push", _push},
+		{"push", NULL},
 		{"pop", _pop},
 		{"pint", _pint},
 		{"pall", _pall},
@@ -67,7 +68,7 @@ void _strtok(char *line, unsigned int count, stack_t **stack)
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
 			gnum = token;
-			finder[0].f(&(*stack), count);
+			_push(&(*stack), count, gnum);
 			return;
 		}
 
@@ -79,7 +80,10 @@ void _strtok(char *line, unsigned int count, stack_t **stack)
 				return;
 			}
 		}
+		free_stack(&(*stack), line, file);
+		fclose(file);
 		fprintf(stderr, "L%d: unknown instruction %s\n", count, token);
+		free(line);
 		exit(EXIT_FAILURE);
 	}
 }

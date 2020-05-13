@@ -22,7 +22,20 @@ stack_t *create_node(int n)
 
 	return (new_node);
 }
+/**
+ * free_stack
+ */
+void free_stack(stack_t **stack, char *line __attribute__((unused)), FILE *file __attribute__((unused)))
+{
+	stack_t *temp;
 
+	while(*stack)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
+}
 /**
  * dlistint_len - returns the number of elements in a linked list.
  * @h: head.
@@ -56,6 +69,7 @@ void _add(stack_t **stack, unsigned int count)
 	}
 	aux = saux->n;
 	saux = saux->next;
+	free(saux->prev);
 	saux->n += aux;
 	saux->prev = NULL;
 	*stack = saux;
