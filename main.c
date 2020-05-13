@@ -1,5 +1,4 @@
 #include "monty.h"
-/*void push(char *token);*/
 
 /**
  * main - read and run monty files.
@@ -33,9 +32,7 @@ int main(int argc, char *argv[])
 		_strtok(line, count, &stack, file);
 		count++;
 	}
-	/*Liberar stack en caso de que no tenga ningún opcode con error*/
-	fclose(file);
-	free(line);
+	free_stack(&stack, line, file);
 
 	return (0);
 }
@@ -44,21 +41,16 @@ int main(int argc, char *argv[])
  * _strtok - delete all unnecessary stuff.
  * @stack: head.
  * @count: line_number.
+ * @file: file.
  * @line: one line of buffer.
  */
-void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file __attribute__((unused)))
+void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 {
 	int i = 0;
 	char *token = NULL;
-	char *gnum;
 	instruction_t finder[] = {
-		{"push", NULL},
-		{"pop", _pop},
-		{"pint", _pint},
-		{"pall", _pall},
-		{"swap", _swap},
-		{"add", _add},
-		{"nop", _nop}};
+		{"push", _push}, {"pop", _pop}, {"pint", _pint},
+		{"pall", _pall}, {"swap", _swap}, {"add", _add}, {"nop", _nop}};
 
 	token = strtok(line, " \n\t\r\v\f\a");
 	printf("token %s\n", token);
@@ -68,22 +60,29 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file __attri
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
 			gnum = token;
-			_push(&(*stack), count, gnum);
+			finder[0].f(&(*stack), count);
+			if (strcmp(gnum, "3rr0r") == 0)
+			{
+				free_stack(&(*stack), line, file);
+				exit(EXIT_FAILURE);
+			}
 			return;
 		}
-
 		for (i = 1; i < 7; i++)
 		{
 			if (strcmp(token, finder[i].opcode) == 0)
 			{
 				finder[i].f(&(*stack), count);
+				if (strcmp(gnum, "3rr0r") == 0)
+				{
+					free_stack(&(*stack), line, file);
+					exit(EXIT_FAILURE);
+				}
 				return;
 			}
 		}
-		free_stack(&(*stack), line, file);
-		fclose(file);
 		fprintf(stderr, "L%d: unknown instruction %s\n", count, token);
-		free(line);
+		free_stack(&(*stack), line, file);
 		exit(EXIT_FAILURE);
 	}
 }

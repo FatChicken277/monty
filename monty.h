@@ -44,7 +44,7 @@ typedef struct instruction_s
 /** ====Prototypes==== **/
 
 stack_t *create_node(int n);
-void _push(stack_t **stack, unsigned int count, char *gnum);
+void _push(stack_t **stack, unsigned int count);
 void _pop(stack_t **stack, unsigned int count);
 void _pint(stack_t **stack, unsigned int count);
 void _pall(stack_t **stack, unsigned int count);
@@ -54,7 +54,9 @@ void _add(stack_t **stack, unsigned int count);
 size_t dlistint_len(stack_t **h);
 void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file);
 void free_stack(stack_t **stack, char *line, FILE *file);
+
 /** ====Global==== **/
-/*char *gnum;*/
-/*int error;*/
+
+char *gnum;
+
 #endif

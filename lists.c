@@ -23,18 +23,24 @@ stack_t *create_node(int n)
 	return (new_node);
 }
 /**
- * free_stack
+ * free_stack - free memory.
+ * @stack: head.
+ * @line: one line of the buffer.
+ * @file: file.
  */
-void free_stack(stack_t **stack, char *line __attribute__((unused)), FILE *file __attribute__((unused)))
+void free_stack(stack_t **stack, char *line, FILE *file)
 {
 	stack_t *temp;
 
-	while(*stack)
+	while (*stack)
 	{
 		temp = *stack;
 		*stack = (*stack)->next;
 		free(temp);
 	}
+
+	free(line);
+	fclose(file);
 }
 /**
  * dlistint_len - returns the number of elements in a linked list.
@@ -65,7 +71,8 @@ void _add(stack_t **stack, unsigned int count)
 	if (dlistint_len(&*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", count);
-		exit(EXIT_FAILURE);
+		gnum = "3rr0r";
+		return;
 	}
 	aux = saux->n;
 	saux = saux->next;

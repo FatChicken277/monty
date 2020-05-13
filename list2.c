@@ -5,7 +5,7 @@
  * @stack: top of the stack.
  * @count: line_number.
  */
-void _push(stack_t **stack, unsigned int count, char *gnum)
+void _push(stack_t **stack, unsigned int count)
 {
 	stack_t *new;
 	int i, n;
@@ -13,7 +13,8 @@ void _push(stack_t **stack, unsigned int count, char *gnum)
 	if (!gnum)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", count);
-		exit(EXIT_FAILURE);
+		gnum = "3rr0r";
+		return;
 	}
 	printf("%s\n", gnum);
 	for (i = 0; gnum[i] != '\0'; i++)
@@ -21,7 +22,8 @@ void _push(stack_t **stack, unsigned int count, char *gnum)
 		if (gnum[i] < '0' || gnum[i] > '9')
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", count);
-			exit(EXIT_FAILURE);
+			gnum = "3rr0r";
+			return;
 		}
 	}
 	n = atoi(gnum);
@@ -48,13 +50,10 @@ void _pall(stack_t **stack, unsigned int count __attribute__((unused)))
 	size_t i = 0;
 	stack_t *aux = *stack;
 
-	if ((*stack))
+	for (i = 0; aux != NULL; i++)
 	{
-		for (i = 0; aux != NULL; i++)
-		{
-			printf("%d\n", aux->n);
-			aux = aux->next;
-		}
+		printf("%d\n", aux->n);
+		aux = aux->next;
 	}
 }
 
@@ -73,7 +72,8 @@ void _pint(stack_t **stack, unsigned int count)
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", count);
-		exit(EXIT_FAILURE);
+		gnum = "3rr0r";
+		return;
 	}
 }
 
@@ -90,7 +90,8 @@ void _pop(stack_t **stack, unsigned int count)
 	if ((*stack) == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", count);
-		exit(EXIT_FAILURE);
+		gnum = "3rr0r";
+		return;
 	}
 	del = (*stack);
 	data = del->n;
@@ -116,7 +117,8 @@ void _swap(stack_t **stack, unsigned int count)
 	if (dlistint_len(&*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", count);
-		exit(EXIT_FAILURE);
+		gnum = "3rr0r";
+		return;
 	}
 	aux = saux->n;
 	saux->n = saux->next->n;
