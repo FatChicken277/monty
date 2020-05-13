@@ -37,17 +37,16 @@ int main(int argc, char *argv[])
 
 void _strtok(char *line, unsigned int count, stack_t **stack)
 {
-	int i = 0, num;
+	int i = 0;
 	char *token = NULL;
 	instruction_t finder[] = {
-		{"push", NULL},
+		{"push", _push},
 		{"pop", _pop},
 		{"pint", NULL},
 		{"pall", NULL},
 		{"swap", NULL},
 		{"add", NULL},
-		{"nop", NULL}
-	};
+		{"nop", NULL}};
 
 	token = strtok(line, " \n\t\r\v\f\a");
 	printf("token %s\n", token);
@@ -56,22 +55,8 @@ void _strtok(char *line, unsigned int count, stack_t **stack)
 		if (strcmp(token, finder[0].opcode) == 0)
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
-			if (!token)
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", count);
-				exit(EXIT_FAILURE);
-			}
-			printf("%s\n", token);
-			for (i = 0; token[i] != '\0'; i++)
-			{
-				if (token[i] < '0' || token[i] > '9')
-				{
-					fprintf(stderr, "L%d: usage: push integer\n", count);
-					exit(EXIT_FAILURE);
-				}
-			}
-			num = atoi(token);
-			_push(&(*stack), num);
+			gnum = token;
+			finder[0].f(&(*stack), count);
 			return;
 		}
 
@@ -83,6 +68,7 @@ void _strtok(char *line, unsigned int count, stack_t **stack)
 				return;
 			}
 		}
-		/*Imprimir error en caso de que no se encuentre el opcode*/
+		fprintf(stderr, "L%d: unknown instruction %s\n", count, token);
+		exit(EXIT_FAILURE);
 	}
 }
