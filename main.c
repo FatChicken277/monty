@@ -1,5 +1,5 @@
 #include "monty.h"
-void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack __attribute__((unused)));
+void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack);
 /*void push(char *token);*/
 
 int main(int argc, char *argv[])
@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack __attribute__((unused)))
+void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack)
 {
-	int i = 0;
+	int i = 0, num;
 	char *token = NULL;
 	instruction_t finder[] = {
 		{"push", NULL},
@@ -57,6 +57,8 @@ void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **s
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
 			printf("%s\n", token);
+			num = atoi(token);
+			_push(&(*stack), num);
 			return;
 		}
 
