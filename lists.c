@@ -24,61 +24,50 @@ stack_t *create_node(int n)
 }
 
 /**
- * _push - adds a new node in the stack
- * @stack: top of the stack
- * @n: data for the new node
- * Return: address of new node
+ * dlistint_len - returns the number of elements in a linked list.
+ * @h: head.
+ * Return: returns the number of elements in a linked list.
  */
-void _push(stack_t **stack, unsigned int count)
+size_t dlistint_len(stack_t **h)
 {
-	stack_t *new;
-	int i, n;
+	size_t index = 0;
 
-	if (!gnum)
+	for (index = 0; *h != NULL; index++)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", count);
-		exit(EXIT_FAILURE);
+		*h = (*h)->next;
 	}
-	printf("%s\n", gnum);
-	for (i = 0; gnum[i] != '\0'; i++)
-	{
-		if (gnum[i] < '0' || gnum[i] > '9')
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", count);
-			exit(EXIT_FAILURE);
-		}
-	}
-	n = atoi(gnum);
-
-	new = create_node(n);
-	if ((*stack) == NULL)
-		*stack = new;
-	else
-	{
-		new->next = *stack;
-		(*stack)->prev = new;
-		(*stack) = new;
-	}
-	printf("value %d in the stack\n", (*stack)->n);
+	return (index);
 }
 
-void _pop(stack_t **stack, unsigned int count)
+/**
+ * _add - adds the top two elements of the stack.
+ * @stack: head.
+ * @count: line_number.
+ */
+void _add(stack_t **stack, unsigned int count)
 {
-	stack_t *del;
-	int data;
+	int aux = 0;
+	stack_t *saux = *stack;
 
-	if ((*stack) == NULL)
+	if (dlistint_len(&*stack) < 2)
 	{
-		printf("It is NULL\n");
-		return;
+		fprintf(stderr, "L%d: can't add, stack too short\n", count);
+		exit(EXIT_FAILURE);
 	}
-	del = (*stack);
-	data = del->n;
-	(*stack) = (*stack)->next;
-	/*free memory*/
-	free(del);
-	printf("value %d deleted\n", data);
-	printf("count %d\n", count);
-	if ((*stack))
-		(*stack)->prev = NULL;
+	aux = saux->n;
+	saux = saux->next;
+	saux->n += aux;
+	saux->prev = NULL;
+	*stack = saux;
+}
+
+/**
+ * _nop - doesn’t do anything.
+ * @stack: head.
+ * @count: line_number.
+ */
+void _nop(stack_t **stack, unsigned int count)
+{
+	*stack = *stack;
+	count = count;
 }
