@@ -41,9 +41,9 @@ void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **s
 	char *token = NULL;
 	instruction_t finder[] = {
 		{"push", NULL},
-		{"pall", NULL},
+		{"pop", _pop},
 		{"pint", NULL},
-		{"pop", NULL},
+		{"pall", NULL},
 		{"swap", NULL},
 		{"add", NULL},
 		{"nop", NULL}
@@ -66,7 +66,7 @@ void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **s
 		{
 			if (strcmp(token, finder[i].opcode) == 0)
 			{
-				/*finder[i].f(*stack, cont);*/
+				finder[i].f(&(*stack), count);
 				return;
 			}
 		}

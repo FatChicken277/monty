@@ -45,3 +45,24 @@ stack_t *_push(stack_t **stack, int n)
 	printf("value %d in the stack\n", (*stack)->n);
 	return (*stack);
 }
+
+void _pop(stack_t **stack, unsigned int count)
+{
+	stack_t *del;
+	int data;
+
+	if ((*stack) == NULL)
+	{
+		printf("It is NULL\n");
+		return;
+	}
+	del = (*stack);
+	data = del->n;
+	(*stack) = (*stack)->next;
+	/*free memory*/
+	free(del);
+	printf("value %d deleted\n", data);
+	printf("count %d\n", count);
+	if ((*stack))
+		(*stack)->prev = NULL;
+}

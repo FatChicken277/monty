@@ -45,5 +45,5 @@ typedef struct instruction_s
 
 stack_t *create_node(int n);
 stack_t *_push(stack_t **stack, int n);
-
+void _pop(stack_t **stack, unsigned int count);
 #endif
