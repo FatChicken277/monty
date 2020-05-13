@@ -29,9 +29,26 @@ stack_t *create_node(int n)
  * @n: data for the new node
  * Return: address of new node
  */
-stack_t *_push(stack_t **stack, int n)
+void _push(stack_t **stack, unsigned int count)
 {
 	stack_t *new;
+	int i, n;
+
+	if (!gnum)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", count);
+		exit(EXIT_FAILURE);
+	}
+	printf("%s\n", gnum);
+	for (i = 0; gnum[i] != '\0'; i++)
+	{
+		if (gnum[i] < '0' || gnum[i] > '9')
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", count);
+			exit(EXIT_FAILURE);
+		}
+	}
+	n = atoi(gnum);
 
 	new = create_node(n);
 	if ((*stack) == NULL)
@@ -43,7 +60,6 @@ stack_t *_push(stack_t **stack, int n)
 		(*stack) = new;
 	}
 	printf("value %d in the stack\n", (*stack)->n);
-	return (*stack);
 }
 
 void _pop(stack_t **stack, unsigned int count)
