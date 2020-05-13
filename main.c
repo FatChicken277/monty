@@ -1,5 +1,5 @@
 #include "monty.h"
-void _strtok(char *line, unsigned int count __attribute__((unused)));
+void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack __attribute__((unused)));
 /*void push(char *token);*/
 
 int main(int argc, char *argv[])
@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 	unsigned int count = 1;
 	FILE *file;
 	size_t len = 0;
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
@@ -24,7 +25,7 @@ int main(int argc, char *argv[])
 
 	while ((getline(&line, &len, file)) != -1)
 	{
-		_strtok(line, count);
+		_strtok(line, count, &stack);
 		count++;
 	}
 
@@ -34,7 +35,7 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-void _strtok(char *line, unsigned int count __attribute__((unused)))
+void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack __attribute__((unused)))
 {
 	int i = 0;
 	char *token = NULL;
