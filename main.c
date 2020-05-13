@@ -57,6 +57,7 @@ void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **s
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
 			printf("%s\n", token);
+			/*Agregar condicion para chequear cuando nos envían un número así 23jassa */
 			num = atoi(token);
 			_push(&(*stack), num);
 			return;
