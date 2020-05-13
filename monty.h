@@ -44,6 +44,10 @@ typedef struct instruction_s
 /** ====Prototypes==== **/
 
 stack_t *create_node(int n);
-stack_t *_push(stack_t **stack, int n);
+void _push(stack_t **stack, unsigned int count);
 void _pop(stack_t **stack, unsigned int count);
+
+/** ====Global==== **/
+char *gnum;
+
 #endif
