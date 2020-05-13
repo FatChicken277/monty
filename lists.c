@@ -43,21 +43,24 @@ void free_stack(stack_t **stack, char *line, FILE *file)
 	fclose(file);
 }
 /**
- * dlistint_len - returns the number of elements in a linked list.
- * @h: head.
- * Return: returns the number of elements in a linked list.
+ * dlistint_len - length of a doubly linked list dlistin_t
+ * @h: head of the doubly linked list
+ * Return: number of elements of the doubly linked list
  */
-size_t dlistint_len(stack_t **h)
+size_t dlistint_len(stack_t *h)
 {
-	size_t index = 0;
+	stack_t *current = h;
+	int lg = 0;
 
-	for (index = 0; *h != NULL; index++)
+	if (h == NULL)
+		return (lg);
+	while (current)
 	{
-		*h = (*h)->next;
+		lg++;
+		current = current->next;
 	}
-	return (index);
+	return (lg);
 }
-
 /**
  * _add - adds the top two elements of the stack.
  * @stack: head.
@@ -68,7 +71,7 @@ void _add(stack_t **stack, unsigned int count)
 	int aux = 0;
 	stack_t *saux = *stack;
 
-	if (dlistint_len(&*stack) < 2)
+	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", count);
 		gnum = "3rr0r";

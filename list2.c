@@ -114,7 +114,7 @@ void _swap(stack_t **stack, unsigned int count)
 	int aux = 0;
 	stack_t *saux = *stack;
 
-	if (dlistint_len(&*stack) < 2)
+	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", count);
 		gnum = "3rr0r";
