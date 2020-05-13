@@ -1,5 +1,5 @@
 #include "monty.h"
-void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack);
+void _strtok(char *line, unsigned int count, stack_t **stack);
 /*void push(char *token);*/
 
 int main(int argc, char *argv[])
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **stack)
+void _strtok(char *line, unsigned int count, stack_t **stack)
 {
 	int i = 0, num;
 	char *token = NULL;
@@ -56,8 +56,20 @@ void _strtok(char *line, unsigned int count __attribute__((unused)), stack_t **s
 		if (strcmp(token, finder[0].opcode) == 0)
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
+			if (!token)
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", count);
+				exit(EXIT_FAILURE);
+			}
 			printf("%s\n", token);
-			/*Agregar condicion para chequear cuando nos envían un número así 23jassa */
+			for (i = 0; token[i] != '\0'; i++)
+			{
+				if (token[i] < '0' || token[i] > '9')
+				{
+					fprintf(stderr, "L%d: usage: push integer\n", count);
+					exit(EXIT_FAILURE);
+				}
+			}
 			num = atoi(token);
 			_push(&(*stack), num);
 			return;
