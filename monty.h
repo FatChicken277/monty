@@ -58,6 +58,8 @@ void _sub(stack_t **stack, unsigned int count);
 void _div(stack_t **stack, unsigned int count);
 void _mul(stack_t **stack, unsigned int count);
 void _mod(stack_t **stack, unsigned int count);
+void check_error(stack_t **stack, char *line, FILE *file);
+
 /** ====Global==== **/
 
 extern char *gnum;
