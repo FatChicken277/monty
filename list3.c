@@ -24,3 +24,29 @@ void _pchar(stack_t **stack, unsigned int count)
 	}
 	printf("%c\n", aux);
 }
+
+/**
+ * _pstr - prints the string starting at the top of the stack.
+ * @stack: top of the stack
+ * @count: number of the line where the opcode is
+ */
+void _pstr(stack_t **stack, unsigned int count __attribute__((unused)))
+{
+	int aux;
+	stack_t *saux = *stack;
+
+	if (!(*stack))
+	{
+		printf("\n");
+		return;
+	}
+	while (saux)
+	{
+		aux = saux->n;
+		if (aux == 0 || (aux < 0 || aux > 127))
+			break;
+		printf("%c", aux);
+		saux = saux->next;
+	}
+	printf("\n");
+}
