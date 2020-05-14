@@ -2,7 +2,7 @@
 
 # FIles
 
-# Those are the files that you can find into this projects
+## Those are the files that you can find into this projects
 
 | File | Features |
 | ------ | ------ |
