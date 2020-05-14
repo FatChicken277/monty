@@ -54,7 +54,10 @@ void _add(stack_t **stack, unsigned int count);
 size_t dlistint_len(stack_t *h);
 void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file);
 void free_stack(stack_t **stack, char *line, FILE *file);
-
+void _sub(stack_t **stack, unsigned int count);
+void _div(stack_t **stack, unsigned int count);
+void _mul(stack_t **stack, unsigned int count);
+void _mod(stack_t **stack, unsigned int count);
 /** ====Global==== **/
 
 extern char *gnum;
