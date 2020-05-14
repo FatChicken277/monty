@@ -75,3 +75,24 @@ void _rotl(stack_t **stack, unsigned int count __attribute__((unused)))
 	current->next = saux;
 	saux->prev = current;
 }
+/**
+ * _rotr - rotates the stack to the bottom.
+ * @stack: top of the stack
+ * @count: number of line where the opcode is
+ * Return: Nothing
+ */
+void _rotr(stack_t **stack, unsigned int count __attribute__((unused)))
+{
+	stack_t *current;
+
+	if (!(*stack) || (dlistint_len(*stack) == 1))
+		return;
+	current = *stack;
+	while (current->next != NULL)
+		current = current->next;
+	current->prev->next = NULL;
+	current->prev = NULL;
+	current->next = *stack;
+	(*stack)->prev = current;
+	*stack = current;
+}
