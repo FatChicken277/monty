@@ -9,8 +9,8 @@
 | File | Features |
 | ------ | ------ |
 | monty.h | Header File |
-| main.c | This file controls the entire program flow. |
-| lists.c | This file contains a part of necessary functions. |
+| main.c | Contain the main functions of the program, main, check_error, _strtok |
+| lists.c | Contain the following functions [create_node, free_stack, dlistint_len, _add, _nop](https://github.com/FatChicken277/monty/blob/master/lists.c) |
 | list2.c | This file contains a part of necessary functions. |
 | list3.c | This file contains a part of necessary functions. |
 | math.c | This file contains a part of necessary functions. |
