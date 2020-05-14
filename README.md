@@ -1,7 +1,9 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
 
 # FIles
-Those are the files that you can find into this projects
+
+# Those are the files that you can find into this projects
+
 | File | Features |
 | ------ | ------ |
 | monty.h | Header File |
@@ -11,7 +13,7 @@ Those are the files that you can find into this projects
 | list3.c | This file contains a part of necessary functions. |
 | math.c | This file contains a part of necessary functions. |
 
-## bf directory
+### - Bf directory
 
 | File | Features |
 | ------ | ------ |
