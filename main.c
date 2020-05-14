@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
 
 	while ((getline(&line, &len, file)) != -1)
 	{
-		if (line[0] != '#')
-			_strtok(line, count, &stack, file);
+		_strtok(line, count, &stack, file);
 		count++;
 	}
 	free_stack(&stack, line, file);
@@ -73,6 +72,8 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 	gnum = "";
 	if (token)
 	{
+		if (token[0] == '#')
+			return;
 		if (strcmp(token, finder[0].opcode) == 0)
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
