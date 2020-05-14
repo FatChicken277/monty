@@ -51,7 +51,8 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 	char *token = NULL;
 	instruction_t finder[] = {
 		{"push", _push}, {"pop", _pop}, {"pint", _pint}, {"pall", _pall}
-		, {"swap", _swap}, {"add", _add}, {"nop", _nop}, {"sub", _sub}};
+		, {"swap", _swap}, {"add", _add}, {"nop", _nop}, {"sub", _sub}
+		, {"mul", _mul}};
 
 	token = strtok(line, " \n\t\r\v\f\a");
 	gnum = "";
@@ -69,7 +70,7 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 			}
 			return;
 		}
-		for (i = 1; i < 8; i++)
+		for (i = 1; i < 9; i++)
 		{
 			if (strcmp(token, finder[i].opcode) == 0)
 			{
