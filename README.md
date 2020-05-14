@@ -6,19 +6,19 @@
 
 ### - Main
 
-| File | Features |
+| File | Description |
 | ------ | ------ |
-| monty.h | Header File |
-| main.c | Contain the main functions of the program, main, check_error, _strtok |
-| lists.c | Contain the following functions [create_node, free_stack, dlistint_len, _add, _nop](https://github.com/FatChicken277/monty/blob/master/lists.c) |
-| list2.c | This file contains a part of necessary functions. |
-| list3.c | This file contains a part of necessary functions. |
-| math.c | This file contains a part of necessary functions. |
+| **monty.h** | [Contains libraries, structures, prototypes and global variables](https://github.com/FatChicken277/monty/blob/master/monty.h) |
+| **main.c** | [Contains the main functions of the program main, check_error, _strtok](https://github.com/FatChicken277/monty/blob/master/main.c) |
+| **lists.c** | [Contains the following functions create_node, free_stack, dlistint_len, _add, _nop](https://github.com/FatChicken277/monty/blob/master/lists.c) |
+| **list2.c** | [Contains the following functions _push, _pall, _pint, _pop, _swap](https://github.com/FatChicken277/monty/blob/master/list2.c) |
+| **list3.c** | [Contains the following functions _pchar, _pstr, _rotl, _rotr](https://github.com/FatChicken277/monty/blob/master/list3.c) |
+| **math.c** | [Contains some basic math operations _sub, _div, _mul, _mul](https://github.com/FatChicken277/monty/blob/master/maths.c)  |
 
 ### - Bf directory
 
-| File | Features |
+| File | Description |
 | ------ | ------ |
-| 1000-holberton.bf | This file contains a brainf*ck code which print "Holberton". |
-| 1001-add.bf | This file contains a brainf*ck code which add two numbers. |
-| 1002-mul.bf | This file contains a brainf*ck code which multiply two numbers. |
+| **1000-holberton.bf** | [This file contains a brainf*ck code which print \"Holberton\".](https://github.com/FatChicken277/monty/blob/master/bf/1000-holberton.bf) |
+| **1001-add.bf** | [This file contains a brainf*ck code which add two numbers.](https://github.com/FatChicken277/monty/blob/master/bf/1001-add.bf) |
+| **1002-mul.bf** | [This file contains a brainf*ck code which multiply two numbers.](https://github.com/FatChicken277/monty/blob/master/bf/1002-mul.bf) |
