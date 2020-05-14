@@ -57,6 +57,7 @@ void free_stack(stack_t **stack, char *line, FILE *file);
 void _sub(stack_t **stack, unsigned int count);
 void _div(stack_t **stack, unsigned int count);
 void _mul(stack_t **stack, unsigned int count);
+void _mod(stack_t **stack, unsigned int count);
 /** ====Global==== **/
 
 extern char *gnum;
