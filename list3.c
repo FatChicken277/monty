@@ -50,3 +50,28 @@ void _pstr(stack_t **stack, unsigned int count __attribute__((unused)))
 	}
 	printf("\n");
 }
+/**
+ * _rotl - rotates the stack to the top.
+ * @stack: top of the stack
+ * @count: number of line where the opcode is
+ * Return: Nothing
+ */
+void _rotl(stack_t **stack, unsigned int count __attribute__((unused)))
+{
+	stack_t *saux, *current;
+
+	if (!(*stack) || (dlistint_len(*stack) == 1))
+		return;
+
+	saux = *stack;
+	*stack = (*stack)->next;
+	current = *stack;
+	(*stack)->prev = NULL;
+	saux->next = NULL;
+
+	while (current->next != NULL)
+		current = current->next;
+
+	current->next = saux;
+	saux->prev = current;
+}
