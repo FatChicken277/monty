@@ -16,7 +16,6 @@ void _push(stack_t **stack, unsigned int count)
 		gnum = "3rr0r";
 		return;
 	}
-	printf("%s\n", gnum);
 	for (i = 0; gnum[i] != '\0'; i++)
 	{
 		if (gnum[i] < '0' || gnum[i] > '9')
@@ -37,7 +36,6 @@ void _push(stack_t **stack, unsigned int count)
 		(*stack)->prev = new;
 		(*stack) = new;
 	}
-	printf("value %d in the stack\n", (*stack)->n);
 }
 
 /**
@@ -85,7 +83,6 @@ void _pint(stack_t **stack, unsigned int count)
 void _pop(stack_t **stack, unsigned int count)
 {
 	stack_t *del;
-	int data;
 
 	if ((*stack) == NULL)
 	{
@@ -94,12 +91,9 @@ void _pop(stack_t **stack, unsigned int count)
 		return;
 	}
 	del = (*stack);
-	data = del->n;
 	(*stack) = (*stack)->next;
 	/*free memory*/
 	free(del);
-	printf("value %d deleted\n", data);
-	printf("count %d\n", count);
 	if ((*stack))
 		(*stack)->prev = NULL;
 }

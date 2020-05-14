@@ -1,4 +1,5 @@
 #include "monty.h"
+char *gnum;
 
 /**
  * main - read and run monty files.
@@ -54,7 +55,6 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 
 	token = strtok(line, " \n\t\r\v\f\a");
 	gnum = "";
-	printf("token %s\n", token);
 	if (token)
 	{
 		if (strcmp(token, finder[0].opcode) == 0)

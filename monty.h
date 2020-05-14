@@ -57,6 +57,6 @@ void free_stack(stack_t **stack, char *line, FILE *file);
 
 /** ====Global==== **/
 
-char *gnum;
+extern char *gnum;
 
 #endif
