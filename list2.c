@@ -18,6 +18,8 @@ void _push(stack_t **stack, unsigned int count)
 	}
 	for (i = 0; gnum[i] != '\0'; i++)
 	{
+		if (gnum[0] == '-' && i == 0)
+			i++;
 		if (gnum[i] < '0' || gnum[i] > '9')
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", count);
