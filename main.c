@@ -37,6 +37,20 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
+/**
+ * check_error - check if is error.
+ * @stack: head.
+ * @file: file.
+ * @line: one line of buffer.
+ */
+void check_error(stack_t **stack, char *line, FILE *file)
+{
+	if (strcmp(gnum, "3rr0r") == 0)
+	{
+		free_stack(&(*stack), line, file);
+		exit(EXIT_FAILURE);
+	}
+}
 
 /**
  * _strtok - delete all unnecessary stuff.
@@ -50,9 +64,10 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 	int i = 0;
 	char *token = NULL;
 	instruction_t finder[] = {
-		{"push", _push}, {"pop", _pop}, {"pint", _pint},
-		{"pall", _pall}, {"swap", _swap}, {"add", _add}, {"nop", _nop},
-		{"sub", _sub}, {"mul", _mul}, {"div", _div}, {"mod", _mod}};
+		{"push", _push}, {"pop", _pop}, {"pint", _pint}, {"pall", _pall},
+		{"swap", _swap}, {"add", _add}, {"nop", _nop}, {"sub", _sub},
+		{"mul", _mul}, {"div", _div}, {"mod", _mod}};
+
 	token = strtok(line, " \n\t\r\v\f\a");
 	gnum = "";
 	if (token)
@@ -62,11 +77,7 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 			token = strtok(NULL, " \n\t\r\v\f\a");
 			gnum = token;
 			finder[0].f(&(*stack), count);
-			if (strcmp(gnum, "3rr0r") == 0)
-			{
-				free_stack(&(*stack), line, file);
-				exit(EXIT_FAILURE);
-			}
+			check_error(&(*stack), line, file);
 			return;
 		}
 		for (i = 1; i < 12; i++)
@@ -74,11 +85,7 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 			if (strcmp(token, finder[i].opcode) == 0)
 			{
 				finder[i].f(&(*stack), count);
-				if (strcmp(gnum, "3rr0r") == 0)
-				{
-					free_stack(&(*stack), line, file);
-					exit(EXIT_FAILURE);
-				}
+				check_error(&(*stack), line, file);
 				return;
 			}
 		}
@@ -87,3 +94,4 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 		exit(EXIT_FAILURE);
 	}
 }
+
