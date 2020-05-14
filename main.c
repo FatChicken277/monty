@@ -30,7 +30,10 @@ int main(int argc, char *argv[])
 
 	while ((getline(&line, &len, file)) != -1)
 	{
-		_strtok(line, count, &stack, file);
+		if (line[0] == '#')
+			_nop(&stack, 0);
+		else
+			_strtok(line, count, &stack, file);
 		count++;
 	}
 	free_stack(&stack, line, file);
