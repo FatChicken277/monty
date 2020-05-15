@@ -74,7 +74,7 @@ void _add(stack_t **stack, unsigned int count)
 	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	aux = saux->n;
