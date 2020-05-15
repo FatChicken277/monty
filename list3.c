@@ -11,7 +11,7 @@ void _pchar(stack_t **stack, unsigned int count)
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	aux = (*stack)->n;
@@ -19,7 +19,7 @@ void _pchar(stack_t **stack, unsigned int count)
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range\n",
 			count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	printf("%c\n", aux);

@@ -7,37 +7,26 @@
  */
 void _push(stack_t **stack, unsigned int count)
 {
-	stack_t *new;
-	int i, n;
+	int i;
 
-	if (!gnum)
+	if (!global_var.gnum)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
-	for (i = 0; gnum[i] != '\0'; i++)
+	for (i = 0; global_var.gnum[i] != '\0'; i++)
 	{
-		if (gnum[0] == '-' && i == 0)
+		if (global_var.gnum[0] == '-' && i == 0)
 			i++;
-		if (gnum[i] < '0' || gnum[i] > '9')
+		if (global_var.gnum[i] < '0' || global_var.gnum[i] > '9')
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", count);
-			gnum = "3rr0r";
+			global_var.gnum = "3rr0r";
 			return;
 		}
 	}
-	n = atoi(gnum);
-
-	new = create_node(n);
-	if ((*stack) == NULL)
-		*stack = new;
-	else
-	{
-		new->next = *stack;
-		(*stack)->prev = new;
-		(*stack) = new;
-	}
+	stack_queue(&(*stack));
 }
 
 /**
@@ -72,7 +61,7 @@ void _pint(stack_t **stack, unsigned int count)
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 }
@@ -89,7 +78,7 @@ void _pop(stack_t **stack, unsigned int count)
 	if ((*stack) == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	del = (*stack);
@@ -113,7 +102,7 @@ void _swap(stack_t **stack, unsigned int count)
 	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	aux = saux->n;
