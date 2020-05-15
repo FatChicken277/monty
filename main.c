@@ -1,5 +1,5 @@
 #include "monty.h"
-char *gnum;
+global_t global_var = {"", 1};
 
 /**
  * main - read and run monty files.
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
  */
 void check_error(stack_t **stack, char *line, FILE *file)
 {
-	if (strcmp(gnum, "3rr0r") == 0)
+	if (strcmp(global_var.gnum, "3rr0r") == 0)
 	{
 		free_stack(&(*stack), line, file);
 		exit(EXIT_FAILURE);
@@ -64,12 +64,13 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 	int i = 0;
 	char *token = NULL;
 	instruction_t finder[] = {{"push", _push}, {"pop", _pop}, {"pint", _pint},
-	{"pall", _pall}, {"swap", _swap}, {"add", _add}, {"nop", _nop},
-	{"sub", _sub}, {"mul", _mul}, {"div", _div}, {"mod", _mod},
-	{"pchar", _pchar}, {"pstr", _pstr}, {"rotl", _rotl}, {"rotr", _rotr}};
+				  {"pall", _pall}, {"swap", _swap}, {"add", _add}, {"nop", _nop},
+				  {"sub", _sub}, {"mul", _mul}, {"div", _div}, {"mod", _mod},
+				  {"pchar", _pchar}, {"pstr", _pstr},{"rotl", _rotl}, {"rotr", _rotr},
+				  {"stack", _stack}, {"queue", _queue}};
 
 	token = strtok(line, " \n\t\r\v\f\a");
-	gnum = "";
+	global_var.gnum = "";
 	if (token)
 	{
 		if (token[0] == '#')
@@ -77,12 +78,12 @@ void _strtok(char *line, unsigned int count, stack_t **stack, FILE *file)
 		if (strcmp(token, finder[0].opcode) == 0)
 		{
 			token = strtok(NULL, " \n\t\r\v\f\a");
-			gnum = token;
+			global_var.gnum = token;
 			finder[0].f(&(*stack), count);
 			check_error(&(*stack), line, file);
 			return;
 		}
-		for (i = 1; i < 15; i++)
+		for (i = 1; i < 17; i++)
 		{
 			if (strcmp(token, finder[i].opcode) == 0)
 			{

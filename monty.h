@@ -40,7 +40,12 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
+typedef struct global
+{
+        char *gnum;
+	int flag;
+} global_t;
+extern global_t global_var;
 /** ====Prototypes==== **/
 
 stack_t *create_node(int n);
@@ -63,8 +68,8 @@ void _pchar(stack_t **stack, unsigned int count);
 void _pstr(stack_t **stack, unsigned int count);
 void _rotl(stack_t **stack, unsigned int count);
 void _rotr(stack_t **stack, unsigned int count);
+void _stack(stack_t **stack, unsigned int count);
+void _queue(stack_t **stack, unsigned int count);
 /** ====Global==== **/
-
-extern char *gnum;
 
 #endif

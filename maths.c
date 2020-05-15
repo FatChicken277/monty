@@ -13,7 +13,7 @@ void _sub(stack_t **stack, unsigned int count)
 	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	aux = saux->n;
@@ -37,13 +37,13 @@ void _div(stack_t **stack, unsigned int count)
 	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	if (saux->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	aux = saux->n;
@@ -67,7 +67,7 @@ void _mul(stack_t **stack, unsigned int count)
 	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	aux = saux->n;
@@ -91,13 +91,13 @@ void _mod(stack_t **stack, unsigned int count)
 	if (dlistint_len(*stack) < 2)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	if (saux->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", count);
-		gnum = "3rr0r";
+		global_var.gnum = "3rr0r";
 		return;
 	}
 	aux = saux->n;
