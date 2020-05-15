@@ -7,8 +7,7 @@
  */
 void _push(stack_t **stack, unsigned int count)
 {
-	stack_t *new, *last;
-	int i, n;
+	int i;
 
 	if (!global_var.gnum)
 	{
@@ -27,34 +26,7 @@ void _push(stack_t **stack, unsigned int count)
 			return;
 		}
 	}
-	n = atoi(global_var.gnum);
-	new = create_node(n);
-	if(global_var.flag == 1)
-	{
-		if ((*stack) == NULL)
-			*stack = new;
-		else
-		{
-			new->next = *stack;
-			(*stack)->prev = new;
-			(*stack) = new;
-		}
-	}
-	else
-	{
-		if ((*stack) == NULL)
-			*stack = new;
-		else
-		{
-			last = *stack;
-			while (last->next != NULL)
-				last = last->next;
-
-			last->next = new;
-			new->prev = last;
-		}
-
-	}
+	stack_queue(&(*stack));
 }
 
 /**

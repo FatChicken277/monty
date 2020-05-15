@@ -40,12 +40,21 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct global - global struct.
+ * @gnum: global variable.
+ * @flag: flag.
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
 typedef struct global
 {
-        char *gnum;
+	char *gnum;
 	int flag;
 } global_t;
-extern global_t global_var;
+
 /** ====Prototypes==== **/
 
 stack_t *create_node(int n);
@@ -70,6 +79,10 @@ void _rotl(stack_t **stack, unsigned int count);
 void _rotr(stack_t **stack, unsigned int count);
 void _stack(stack_t **stack, unsigned int count);
 void _queue(stack_t **stack, unsigned int count);
-/** ====Global==== **/
+void stack_queue(stack_t **stack);
+
+/** ====Global===== **/
+
+extern global_t global_var;
 
 #endif
